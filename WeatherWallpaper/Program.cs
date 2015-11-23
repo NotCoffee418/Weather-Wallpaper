@@ -34,6 +34,7 @@ namespace WeatherWallpaper
         {
             try
             {
+                UpdateHandler.CheckForUpdates();
                 Start(args);
             }
             catch (Exception e)

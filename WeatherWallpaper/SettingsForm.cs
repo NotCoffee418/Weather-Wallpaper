@@ -346,7 +346,7 @@ namespace WeatherWallpaper
 
         private void updatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (UpdateHandler.CheckForUpdates())
+            if (UpdateHandler.CheckForUpdates(ignoreBuildVersion:false))
                 MessageBox.Show("You are currently using the latest version of Weather Wallpaper.", "Up to date",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

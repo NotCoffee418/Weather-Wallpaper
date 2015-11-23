@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="*" 
       Name="Weather Wallpaper" 
-      Language="1033" Version="1.1.0.12" 
+      Language="1033" Version="1.1.0.13" 
       Manufacturer="Stijn Raeymaekers" 
       UpgradeCode="80383b3e-49b2-4e3c-b9da-e2335a1569a0">
       
@@ -29,9 +29,6 @@
           <Component Id="Updater.exe" Guid="6e3ea0b0-dcb8-40ae-a0f0-81e9b2649ad5">
             <File Id="Updater.exe" Source="$(var.Updater.TargetDir)Updater.exe" KeyPath="yes" Checksum="yes"/>
           </Component>
-            <Component Id="Newtonsoft.Json.dll">
-                <File Id="Newtonsoft.Json.dll" Source="$(var.WeatherWallpaper.TargetDir)Newtonsoft.Json.dll" KeyPath="yes"/>
-            </Component>
         </DirectoryRef>
 
         <!-- Step 2: Add the shortcut to your installer package -->
@@ -50,7 +47,6 @@
     <Feature Id="MainApplication" Title="Main Application" Level="1">
             <ComponentRef Id="WeatherWallpaper.exe" />
             <ComponentRef Id="Updater.exe" />
-            <ComponentRef Id="Newtonsoft.Json.dll" />
             <!-- Step 3: Tell WiX to install the shortcut -->
             <ComponentRef Id="ApplicationShortcut" />   
         </Feature>

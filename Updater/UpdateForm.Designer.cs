@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -49,7 +50,7 @@
             this.statusLabel.TabIndex = 1;
             this.statusLabel.Text = "Status";
             // 
-            // Form1
+            // UpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -57,8 +58,9 @@
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "UpdateForm";
+            this.Text = "Updating Weather Wallpaper...";
             this.ResumeLayout(false);
             this.PerformLayout();
 

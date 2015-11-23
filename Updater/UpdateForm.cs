@@ -25,7 +25,6 @@ namespace Updater
 
         string InstallerPath = "";
 
-
         private void startDownload()
         {
             // Closing main application
@@ -39,7 +38,9 @@ namespace Updater
                 WebClient client = new WebClient();
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri("todo.msi"), InstallerPath);
+                client.DownloadFileAsync(
+                    new Uri("https://github.com/RStijn/Weather-Wallpaper/blob/master/WeatherWallpaper-installer.msi?raw=true"), 
+                    InstallerPath);
             });
             thread.Start();
         }
