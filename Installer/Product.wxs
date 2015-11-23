@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" 
+      Name="Weather Wallpaper" 
+      Language="1033" Version="1.1.0.12" 
+      Manufacturer="Stijn Raeymaekers" 
+      UpgradeCode="80383b3e-49b2-4e3c-b9da-e2335a1569a0">
+      
+    <Package InstallerVersion="300" Compressed="yes" InstallScope="perMachine" />
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Weather Wallpaper is already installed." />
+		<MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+ 
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="APPLICATIONROOTDIRECTORY" Name="Weather Wallpaper"/>
+            </Directory>
+            <!-- Step 1: Define the directory structure -->
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Weather Wallpaper"/>
+            </Directory>
+        </Directory>
+
+        <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+            <Component Id="WeatherWallpaper.exe" Guid="8ce11f26-03c2-4faa-92e1-a781ec4d8874">
+                <File Id="WeatherWallpaper.exe" Source="$(var.WeatherWallpaper.TargetDir)WeatherWallpaper.exe" KeyPath="yes" Checksum="yes"/>
+            </Component>
+          <Component Id="Updater.exe" Guid="6e3ea0b0-dcb8-40ae-a0f0-81e9b2649ad5">
+            <File Id="Updater.exe" Source="$(var.Updater.TargetDir)Updater.exe" KeyPath="yes" Checksum="yes"/>
+          </Component>
+            <Component Id="Newtonsoft.Json.dll">
+                <File Id="Newtonsoft.Json.dll" Source="$(var.WeatherWallpaper.TargetDir)Newtonsoft.Json.dll" KeyPath="yes"/>
+            </Component>
+        </DirectoryRef>
+
+        <!-- Step 2: Add the shortcut to your installer package -->
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut">
+                <Shortcut Id="ApplicationStartMenuShortcut" 
+                     Name="Weather Wallpaper"
+                    Target="[#WeatherWallpaper.exe]"
+                      WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="Software\Stijn Raeymaekers\Weather Wallpaper" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+                <RegistryValue Root="HKCU" Key="Software\Stijn Raeymaekers\Weather Wallpaper" Name="installDirectory" Type="string" Value="[APPLICATIONROOTDIRECTORY]" />
+           </Component>
+        </DirectoryRef>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+            <ComponentRef Id="WeatherWallpaper.exe" />
+            <ComponentRef Id="Updater.exe" />
+            <ComponentRef Id="Newtonsoft.Json.dll" />
+            <!-- Step 3: Tell WiX to install the shortcut -->
+            <ComponentRef Id="ApplicationShortcut" />   
+        </Feature>
+
+    <!-- Step 2: Add UI to your installer / Step 4: Trigger the custom action -->
+    <UI>
+        <UIRef Id="WixUI_Minimal" />
+        <Publish Dialog="ExitDialog" 
+            Control="Finish" 
+            Event="DoAction" 
+            Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
+    </UI>
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Start Weather Wallpaper" />
+
+    <!-- Step 3: Include the custom action -->
+    <Property Id="WixShellExecTarget" Value="[#WeatherWallpaper.exe]" />
+    <CustomAction Id="LaunchApplication" 
+        BinaryKey="WixCA" 
+        DllEntry="WixShellExec"
+        Impersonate="yes" />
+    </Product>
+</Wix>
