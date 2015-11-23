@@ -1,7 +1,8 @@
 # Weather-Wallpaper
-Automatically change your Windows wallpaper as the weather outside changes.
-Choose your own wallpapers for any weather.
-Multiscreen support with an option to keep a static wallpaper on one of your screens.
+* Automatically change your Windows wallpaper as the weather outside changes.
+* Choose your own wallpapers for any weather.
+* Multiscreen support with an option to keep a static wallpaper on one of your screens.
+
 ![Weather Wallpaper Preview](https://raw.githubusercontent.com/RStijn/Weather-Wallpaper/master/media/ww-preview.jpg)
 
 ### Installation ###
