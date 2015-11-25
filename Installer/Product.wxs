@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="*" 
       Name="Weather Wallpaper" 
-      Language="1033" Version="1.1.0.13" 
+      Language="1033" Version="1.1.0.14" 
       Manufacturer="Stijn Raeymaekers" 
       UpgradeCode="80383b3e-49b2-4e3c-b9da-e2335a1569a0">
       

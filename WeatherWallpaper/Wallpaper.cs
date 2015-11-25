@@ -182,7 +182,9 @@ namespace WeatherWallpaper
         /// <returns></returns>
         private static string CorrectWeatherName(string weather)
         {
-            if (weather == "Light Rain" || weather == "Rain Showers")
+            if (weather == "Light Rain" || 
+                weather == "Rain Showers" || 
+                weather == "Light Rain and Snow")
                 weather = "Rain";
             else if (weather == "Mostly Cloudy")
                 weather = "Cloudy";
